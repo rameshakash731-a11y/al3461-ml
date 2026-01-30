@@ -1,0 +1,16 @@
+def candidate_elimination(examples, attributes):
+    """
+    examples: list of tuples (x, label)
+              x is a tuple of attribute values
+              label is 'Yes' or 'No'
+    attributes: list of lists, each containing possible values for that attribute
+    """
+
+    # Initialize S and G
+    S = ['Ø'] * len(attributes)
+    G = [['?'] * len(attributes)]
+
+    def more_general(h1, h2):
+        return all(h1[i] == '?' or h1[i] == h2[i] for i in range(len(h1)))
+
+    def consistent(h, x):
